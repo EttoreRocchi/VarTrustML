@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "VarTrustML"
+description = "Reliable variant calling through machine learning predictions"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    {name = "Ettore Rocchi", email = "ettore.rocchi3@unibo.it"},
+]
+maintainers = [
+    {name = "Ettore Rocchi", email = "ettore.rocchi3@unibo.it"},
+]
+keywords = [
+    "machine-learning",
+    "variant-calling",
+    "bioinformatics",
+    "genomics"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dynamic = ["version", "dependencies"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov",
+    "ruff==0.14.13",
+    "pre-commit",
+]
+docs = [
+    "sphinx>=7.2.0",
+    "sphinx-autobuild>=2024.0.0",
+    "furo>=2024.0.0",
+    "sphinx-autodoc-typehints>=2.0.0",
+    "sphinx-click>=5.0.0",
+    "sphinx-copybutton>=0.5.0",
+    "sphinx-design>=0.5.0",
+    "myst-parser>=2.0.0",
+]
+
+[project.scripts]
+vartrustml = "vartrustml.cli.main:app"
+
+[tool.setuptools.dynamic]
+version = {attr = "vartrustml.__version__"}
+dependencies = {file = ["requirements.txt"]}
+
+[project.urls]
+"Homepage" = "https://github.com/EttoreRocchi/VarTrustML"
+"Bug Reports" = "https://github.com/EttoreRocchi/VarTrustML/issues"
+"Source" = "https://github.com/EttoreRocchi/VarTrustML"
+"Documentation" = "https://vartrustml.readthedocs.io"
+"Changelog" = "https://github.com/EttoreRocchi/VarTrustML/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vartrustml*"]
+exclude = ["docs*", "examples*"]
+
+[tool.setuptools.package-data]
+"vartrustml.visualization" = ["templates/*.j2", "templates/**/*.j2"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+]

@@ -1,0 +1,42 @@
+name: Bug report
+description: Report something that does not work as documented
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: The exact command or Python snippet that triggers the problem.
+      render: bash
+    validations:
+      required: true
+
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Output or traceback
+      render: text
+
+  - type: input
+    id: version
+    attributes:
+      label: VarTrustML version
+      description: Output of `vartrustml version`
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Python version and platform
+      description: Output of `python --version` and your operating system
+    validations:
+      required: true

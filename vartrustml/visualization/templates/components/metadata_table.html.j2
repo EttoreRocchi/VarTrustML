@@ -1,0 +1,18 @@
+{#
+Parameters:
+    - title: Optional title (h3) for the table
+    - items: List of dicts with 'key' and 'value' keys
+#}
+{% if title %}<h3>{{ title }}</h3>{% endif %}
+<table class="info-table">
+    <tr>
+        <th>Property</th>
+        <th>Value</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+        <td>{{ item.key }}</td>
+        <td>{{ item.value | safe }}</td>
+    </tr>
+    {% endfor %}
+</table>

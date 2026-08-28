@@ -1,0 +1,10 @@
+{#
+Parameters:
+    - title: Section title (displayed in h2)
+    - content: HTML content to display in the section
+    - initially_collapsed: Boolean, if True section starts collapsed (default: False)
+#}
+<div class="section"{% if initially_collapsed %} data-initially-collapsed="true"{% endif %}>
+    <h2>{{ title }}</h2>
+    {{ content | safe }}
+</div>

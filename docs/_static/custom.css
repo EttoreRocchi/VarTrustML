@@ -1,0 +1,277 @@
+/* Academic-style custom CSS for VarTrustML documentation */
+
+/* Typography enhancements for academic feel */
+:root {
+    --academic-heading-font: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    --academic-body-font: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Headings with academic typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--academic-heading-font);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    font-size: 2.2em;
+    border-bottom: 2px solid var(--color-brand-primary);
+    padding-bottom: 0.3em;
+    margin-bottom: 0.8em;
+}
+
+h2 {
+    font-size: 1.6em;
+    margin-top: 1.8em;
+}
+
+h3 {
+    font-size: 1.3em;
+    margin-top: 1.5em;
+}
+
+/* Refined code blocks */
+.highlight {
+    border-radius: 6px;
+    border: 1px solid var(--color-background-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.highlight pre {
+    padding: 1em;
+    line-height: 1.5;
+}
+
+/* Inline code styling */
+code.literal {
+    background-color: var(--color-background-secondary);
+    border-radius: 3px;
+    padding: 0.15em 0.35em;
+    font-size: 0.9em;
+}
+
+/* Parameter tables */
+.rst-content table.docutils td,
+.rst-content table.docutils th {
+    padding: 12px 16px;
+}
+
+table.docutils {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+table.docutils th {
+    background-color: var(--color-background-secondary);
+    font-weight: 600;
+    text-align: left;
+}
+
+table.docutils td,
+table.docutils th {
+    border: 1px solid var(--color-background-border);
+    padding: 0.75em 1em;
+}
+
+/* Admonitions with refined styling */
+.admonition {
+    border-radius: 6px;
+    border-left: 4px solid var(--color-brand-primary);
+    margin: 1.5em 0;
+    padding: 1em 1.2em;
+}
+
+.admonition-title {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.admonition.note {
+    border-left-color: #008080;
+    background-color: rgba(0, 128, 128, 0.05);
+}
+
+.admonition.warning {
+    border-left-color: #f0ad4e;
+    background-color: rgba(240, 173, 78, 0.05);
+}
+
+.admonition.tip {
+    border-left-color: #5cb85c;
+    background-color: rgba(92, 184, 92, 0.05);
+}
+
+.admonition.important {
+    border-left-color: #d9534f;
+    background-color: rgba(217, 83, 79, 0.05);
+}
+
+/* API documentation styling */
+.py.class > dt,
+.py.function > dt,
+.py.method > dt,
+.py.attribute > dt {
+    background: var(--color-background-secondary);
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--color-brand-primary);
+    /* Allow text to wrap properly */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Signature container */
+dl.py dt {
+    max-width: 100%;
+}
+
+/* Signature styling */
+.sig-name {
+    font-weight: 600;
+    color: var(--color-brand-content);
+}
+
+.sig-param {
+    font-style: italic;
+}
+
+/* Allow signature to wrap */
+.sig {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    display: inline;
+}
+
+/* Allow long type annotations and parameters to wrap */
+.sig-paren,
+.sig-param,
+.sig-name,
+.sig-return-typehint {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Definition description */
+dl.py dd {
+    max-width: 100%;
+}
+
+/* Field list (parameters, returns) */
+.field-body {
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Long code literals in descriptions */
+.field-body code.literal,
+dd code.literal {
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Parameter descriptions */
+.field-list {
+    margin-top: 1em;
+}
+
+.field-list dt {
+    font-weight: 600;
+    margin-top: 0.8em;
+}
+
+.field-list dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Table of contents refinements */
+.toctree-wrapper .toctree-l1 > a {
+    font-weight: 500;
+}
+
+/* Navigation sidebar refinements */
+.sidebar-tree .reference {
+    font-size: 0.95em;
+}
+
+/* Card styling (sphinx-design) */
+.sd-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease;
+}
+
+.sd-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.sd-card-title {
+    font-family: var(--academic-heading-font);
+    font-weight: 600;
+}
+
+/* Tab styling (sphinx-design) */
+.sd-tab-set > label {
+    font-weight: 500;
+}
+
+/* List styling */
+ul, ol {
+    margin: 0.8em 0;
+    padding-left: 1.8em;
+}
+
+li {
+    margin: 0.4em 0;
+    line-height: 1.6;
+}
+
+/* Blockquotes for academic citations */
+blockquote {
+    border-left: 3px solid var(--color-brand-primary);
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    background-color: var(--color-background-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid var(--color-background-border);
+    margin: 2em 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar-drawer {
+        width: 280px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar-drawer,
+    .toc-drawer,
+    .header-article {
+        display: none !important;
+    }
+
+    .content {
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+}

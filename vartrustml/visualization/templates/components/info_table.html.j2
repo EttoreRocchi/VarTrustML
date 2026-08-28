@@ -1,0 +1,21 @@
+{#
+Parameters:
+    - title: Optional title (h3) for the table
+    - headers: List of column header strings
+    - rows: List of lists, each inner list is a row of cell values
+#}
+{% if title %}<h3>{{ title }}</h3>{% endif %}
+<table class="info-table">
+    <tr>
+        {% for header in headers %}
+        <th>{{ header }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in rows %}
+    <tr>
+        {% for cell in row %}
+        <td>{{ cell | safe }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,10 @@
+{#
+Parameters:
+    - title: Section title (displayed in h2)
+    - plotly_html: HTML output from fig.to_html(include_plotlyjs=False)
+    - initially_collapsed: Boolean, if True section starts collapsed (default: False)
+#}
+<div class="section"{% if initially_collapsed %} data-initially-collapsed="true"{% endif %}>
+    <h2>{{ title }}</h2>
+    {{ plotly_html | safe }}
+</div>
