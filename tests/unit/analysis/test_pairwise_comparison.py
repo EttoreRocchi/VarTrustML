@@ -120,6 +120,25 @@ class TestAlignment:
         assert np.array_equal(aligned["a"].y_true, aligned["b"].y_true)
         assert np.array_equal(y_true, np.array([0, 1, 0, 1]))
 
+    def test_aligns_by_string_sample_indices(self):
+        # --id-column gives object arrays of variant IDs
+        ids = np.array(["chr2_10_DEL_1", "chr1_5_DEL_0", "chr3_7_DEL_2"], dtype=object)
+        y = np.array([1, 0, 1])
+        e1 = Entity("a", TYPE_ML, y, y, sample_indices=ids)
+        order = np.array([2, 0, 1])
+        e2 = Entity(
+            "b",
+            TYPE_SINGLE_CALLER,
+            y[order],
+            1 - y[order],
+            sample_indices=ids[order],
+        )
+        aligned, y_true = align_entities({"a": e1, "b": e2})
+        assert set(aligned) == {"a", "b"}
+        assert list(aligned["a"].sample_indices) == sorted(ids)
+        assert np.array_equal(y_true, np.array([0, 1, 1]))
+        assert np.array_equal(aligned["b"].y_pred, 1 - aligned["a"].y_pred)
+
     def test_drops_entity_with_disagreeing_ground_truth(self):
         idx = np.arange(4)
         good = Entity(

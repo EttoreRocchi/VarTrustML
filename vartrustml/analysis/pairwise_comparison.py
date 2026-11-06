@@ -341,6 +341,14 @@ def _discordant_odds_ratio_ci(b: int, c: int, ci_level: float = 0.95) -> tuple:
     )
 
 
+def _index_keys(indices: np.ndarray) -> list:
+    """Hashable alignment keys: ints for numeric indices, raw values otherwise."""
+    values = np.asarray(indices)
+    if np.issubdtype(values.dtype, np.number):
+        return [int(i) for i in values]
+    return values.tolist()
+
+
 def align_entities(entities: Dict[str, Entity]) -> tuple:
     """Align all entities onto a common instance ordering.
 
@@ -367,7 +375,7 @@ def align_entities(entities: Dict[str, Entity]) -> tuple:
     if have_indices:
         common = None
         for _, e in items:
-            idx = set(int(i) for i in e.sample_indices)
+            idx = set(_index_keys(e.sample_indices))
             common = idx if common is None else (common & idx)
         common_sorted = np.array(sorted(common))
         if len(common_sorted) == 0:
@@ -377,7 +385,7 @@ def align_entities(entities: Dict[str, Entity]) -> tuple:
         aligned: Dict[str, Entity] = {}
         ref_y_true = None
         for name, e in items:
-            pos = {int(i): p for p, i in enumerate(e.sample_indices)}
+            pos = {k: p for p, k in enumerate(_index_keys(e.sample_indices))}
             take = np.array([pos[i] for i in common_sorted])
             y_true_e = np.asarray(e.y_true)[take]
             if ref_y_true is None:
