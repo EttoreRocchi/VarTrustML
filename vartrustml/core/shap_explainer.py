@@ -225,6 +225,8 @@ class SHAPExplainer:
 
                     if isinstance(shap_values, list) and len(shap_values) == 2:
                         shap_values = shap_values[1]
+                    elif np.ndim(shap_values) == 3:
+                        shap_values = shap_values[:, :, 1]
 
                 else:
                     logger.warning(
