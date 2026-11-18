@@ -8,8 +8,9 @@
 #                       caller comparison (MANTA / SMOOVE / DELLY + default combos)
 #   2) compare-models : one run per SV type on the COMBINED pool of the 3 samples,
 #                       with caller comparison (robustness of a single shared model)
-#   3) cross-dataset  : one run per SV type across the 3 samples, using that
-#                       variant's best model (highest mean MCC in step 1)
+#   3) cross-dataset  : one run per SV type across the 3 samples (pairwise matrix
+#                       and leave-one-dataset-out), using that variant's best
+#                       model (highest mean AUROC in step 1)
 #
 # Prerequisites: subdatasets and combined pools already built into data/ with
 #   python scripts/extract_sv_subdatasets.py --save-subdatasets -o data \
@@ -111,17 +112,17 @@ for SV in DEL DUP INS INV; do
 done
 
 echo "############################################################"
-echo "# 3) CROSS-DATASET  (per SV type; best model per variant by mean MCC)"
+echo "# 3) CROSS-DATASET  (per SV type; best model per variant by mean AUROC)"
 echo "############################################################"
 
 for SV in DEL DUP INS INV; do
-    # Pick this variant's best model by mean MCC across the 3 per-sample runs
+    # Pick this variant's best model by mean AUROC across the 3 per-sample runs
     # (step 1 must have completed and written model_metrics_comparison.csv).
     BEST=$(python3 scripts/select_best_model.py \
         --results-dir results --variant "$SV" \
         --samples HG002 NA12878 REACH \
-        --metric "Matthews Corr. Coef.")
-    echo ">>> cross-dataset: ${SV}  (best model by mean MCC: ${BEST})"
+        --metric "AUROC")
+    echo ">>> cross-dataset: ${SV}  (best model by mean AUROC: ${BEST})"
     vartrustml cross-dataset \
         "HG002_${SV}.csv" "NA12878_${SV}.csv" "REACH_${SV}.csv" \
         --data-dir data \
@@ -133,6 +134,7 @@ for SV in DEL DUP INS INV; do
         --seed "$SEED" \
         --n-outer-splits 10 \
         --n-inner-splits 5 \
+        --cv-scheme both \
         --calibrate-model \
         --calibration isotonic \
         --calibration-cv 3 \
