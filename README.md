@@ -11,6 +11,8 @@
 [![Documentation](https://img.shields.io/readthedocs/vartrustml)](https://vartrustml.readthedocs.io)
 [![CI](https://github.com/EttoreRocchi/VarTrustML/actions/workflows/ci.yaml/badge.svg)](https://github.com/EttoreRocchi/VarTrustML/actions/workflows/ci.yaml)
 
+<img src="https://raw.githubusercontent.com/EttoreRocchi/VarTrustML/main/docs/overview.svg" alt="Animated VarTrustML workflow with synthetic values: three SV callers disagree on two deletions, read evidence at call A becomes a feature vector, six models are compared in nested cross-validation against the callers, the best one is calibrated and tested across HG002, NA12878 and REACH, and its calibrated probability marks call A true and call B false" width="720">
+
 </div>
 
 ---
